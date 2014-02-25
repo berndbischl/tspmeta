@@ -9,7 +9,9 @@ Author: Bernd Bischl <bernd_bischl@gmx.net>,
     Jakob Bossek <jakob.bossek@tu-dortmund.de>,
     Olaf Mersmann <olafm@p-value.net>
 Maintainer: Bernd Bischl <bernd_bischl@gmx.net>
-License: BSD
+URL: https://github.com/berndbischl/tspmeta
+BugReports: https://github.com/berndbischl/tspmeta/issues
+License: BSD_3_clause + file LICENSE
 Depends:
     ggplot2,
     TSP,
@@ -24,4 +26,4 @@ Suggests:
     testthat
 LazyData: yes
 ByteCompile: yes
-Version: 1.0
+Version: 1.1

@@ -7,9 +7,9 @@ if (interactive()) {
   library(splancs)
   library(vegan)
   library(TSP)
-  load_all("skel")
+  load_all(".")
 } else {
   library(tspmeta)  
 }
-test_dir("skel/inst/tests")
+test_dir("inst/tests")
 
