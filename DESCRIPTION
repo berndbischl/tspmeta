@@ -1,0 +1,27 @@
+Package: tspmeta
+Title: Instance feature calculation and evolutionary instance generation for
+    the traveling salesman problem.
+Description: Instance feature calculation and evolutionary instance generation
+    for the traveling salesman problem. Also contains code to "morph" two TSP
+    instances into each other. And the possibility to conveniently run a couple
+    of solvers on TSP instances.
+Author: Bernd Bischl <bernd_bischl@gmx.net>,
+    Jakob Bossek <jakob.bossek@tu-dortmund.de>,
+    Olaf Mersmann <olafm@p-value.net>
+Maintainer: Bernd Bischl <bernd_bischl@gmx.net>
+License: BSD
+Depends:
+    ggplot2,
+    TSP,
+    MASS
+Imports:
+    BBmisc,
+    fpc,
+    vegan,
+    stringr,
+    splancs
+Suggests:
+    testthat
+LazyData: yes
+ByteCompile: yes
+Version: 1.0

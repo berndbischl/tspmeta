@@ -1,0 +1,8 @@
+tspmeta.Rcheck
+tspmeta_*.tar.gz
+.Rproj.user
+*.Rproj
+.Rhistory
+src/*.so
+src/*.o
+

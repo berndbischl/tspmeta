@@ -1,0 +1,23 @@
+\name{rotate_coordinates}
+\alias{rotate_coordinates}
+\title{Rotate a matrix of 2D coordinates}
+\usage{
+rotate_coordinates(coords, angle, center)
+}
+\arguments{
+  \item{coords}{[\code{matrix}]\cr Numeric matrix of 2D
+  coordinates to rotate}
+
+  \item{angle}{[\code{numeric(1)}]\cr Angle by which to
+  rotate the coordinates. In radians.}
+
+  \item{center}{[\code{matrix}]\cr Center around which to
+  rotate the coordinates.}
+}
+\value{
+A matrix of rotated coordinates.
+}
+\description{
+Rotate a matrix of 2D coordinates
+}
+

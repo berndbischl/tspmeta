@@ -1,0 +1,18 @@
+\name{feature_centroid}
+\alias{feature_centroid}
+\title{Centroid features.}
+\usage{
+feature_centroid(x)
+}
+\arguments{
+  \item{x}{[\code{\link{tsp_instance}}]\cr TSP instance.}
+}
+\value{
+[\code{list}].
+}
+\description{
+Includes the coordinates of the mean coordinates of the the
+point cloud and the statistics of the distances of all
+cities from it.
+}
+

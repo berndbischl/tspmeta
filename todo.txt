@@ -1,0 +1,23 @@
+WAS SOLL ALLES INS PACKAGE?
+
+- Definition von TSP-Instanz
+- Berechnung diverser Features (Normalisierung vor der Berechnung)
+- Anwendung von TSP-Solvern auf Instanzen 
+  - weitere Algorithmen aus TSP-package übernehmen (nearest-neighbor ...), concorde einbinden,
+    MST-Heuristik, Christofides Heuristik, ACO-Algorithmus)
+  - Vergleich der TSP-Implementierung und Olafs Implementierung des 2-opt
+- Generierung von Probleminstanzen mit evolutionärem Algorithmus
+  - Rotationsnormalisation in EA einbetten
+- Morphing
+- Einlesen der TSPLIB-Instanzen
+  (viele veschiedene Formate, nicht nur symmetrisches TSP, etc.)
+
+PLOTS
+
+- Einzelne TSP Instanz plotten (plot.tsp_instance(...))
+- Gesammte EA-Population plotten?
+  (girdExtra nutzen um plots analog zu mfrow in Gitter anzuordnen)
+
+
+FÜR SPÄTER
+- Export von Instanzen

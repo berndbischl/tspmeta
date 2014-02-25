@@ -1,0 +1,23 @@
+\name{tsp_instance}
+\alias{tsp_instance}
+\title{Generates a TSP instance S3 object either from city coordinates.}
+\usage{
+tsp_instance(coords, dists)
+}
+\arguments{
+  \item{coords}{[\code{matrix}]\cr Numeric matrix of city
+  coordinates, rows denote cities.}
+
+  \item{dists}{[\code{dist}]\cr Optional distance matrix
+  containing the inter-city distances.  If not provided,
+  the (euclidean) distances are computed from the
+  coordinates.}
+}
+\value{
+[\code{\link{tsp_instance}}].
+}
+\description{
+Generates a TSP instance S3 object either from city
+coordinates.
+}
+

@@ -1,0 +1,21 @@
+\name{read_tsplib_instance}
+\alias{read_tsplib_instance}
+\title{Read in a TSPLIB style Traveling Salesman Problem from a
+file.}
+\usage{
+read_tsplib_instance(path)
+}
+\arguments{
+  \item{path}{[\code{character(1)}]\cr Character string
+  containing path to file in TSPLIB format.}
+}
+\value{
+[\code{\link{tsp_instance}}].
+}
+\description{
+The current state of the parser does not understand all
+variants of the TSPLIB format. Much effort has been spent
+making the parser as robust as possible. It will stop as
+soon as it sees input it cannot handle.
+}
+

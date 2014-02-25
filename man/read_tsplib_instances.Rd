@@ -1,0 +1,36 @@
+\name{read_tsplib_instances}
+\alias{read_tsplib_instances}
+\title{Read in multiple TSPLIB style Traveling Salesman Problems
+from a directory.}
+\usage{
+read_tsplib_instances(path, pattern = "*.tsp", max_size = 1000,
+  use_names = TRUE, on_no_coords = "stop")
+}
+\arguments{
+  \item{path}{[\code{character(1)}]\cr Character string
+  containing path to file in TSPLIB format.}
+
+  \item{pattern}{[\code{character(1)}]\cr Pattern of files
+  under \code{path} that are considered as instances.}
+
+  \item{max_size}{[\code{numeric(1)}]\cr Upper bound for
+  instance size (i.e. number of cities). Only applicable,
+  if instance size is contained in file name. Default value
+  ist 1000.}
+
+  \item{use_names}{[\code{logical(1)}]\cr Use base names of
+  files as names of instances in returned list.}
+
+  \item{on_no_coords}{[\code{character(1)}]\cr How to
+  handle instances which do not have any coordinates.
+  Possible values are, \dQuote{stop} and \dQuote{warn}
+  which either stop or raise a warning respectivly.}
+}
+\value{
+A \code{list} List of \code{tsp_instance} objects.
+}
+\description{
+Read in multiple TSPLIB style Traveling Salesman Problems
+from a directory.
+}
+

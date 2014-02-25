@@ -1,0 +1,14 @@
+makeR
+src/*.o
+src/*.so
+^.*tar.gz$
+^.*\.swp$
+.gitignore
+.Rproj.user
+.travis.yml
+Makefile
+README.md
+test_all.R
+test_src.R
+todo.txt
+todo-files

@@ -1,0 +1,23 @@
+\name{autoplot.tsp_instance}
+\alias{autoplot.tsp_instance}
+\title{Plot TSP instance.}
+\usage{
+\method{autoplot}{tsp_instance}(object, opt_tour, ...)
+}
+\arguments{
+  \item{object}{[\code{\link{tsp_instance}}]\cr TSP
+  instance.}
+
+  \item{opt_tour}{[\code{\link[TSP]{TOUR}}]\cr TOUR object
+  from package TSP, containing order of cities, tour length
+  and method name that generated this solution.}
+
+  \item{...}{[any]\cr Not used.}
+}
+\value{
+[\code{\link[ggplot2]{ggplot}}].
+}
+\description{
+Plot TSP instance.
+}
+

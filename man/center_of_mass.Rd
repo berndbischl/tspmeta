@@ -1,0 +1,18 @@
+\name{center_of_mass}
+\alias{center_of_mass}
+\title{Return the center of all cities of a TSP instance.}
+\usage{
+center_of_mass(instance)
+}
+\arguments{
+  \item{instance}{[\code{\link{tsp_instance}}]\cr TSP
+  instance.}
+}
+\value{
+[\code{numeric(2)}] Center of all cities of the TSP
+instance.
+}
+\description{
+Return the center of all cities of a TSP instance.
+}
+

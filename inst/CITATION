@@ -1,0 +1,25 @@
+citHeader("To cite tspmeta in publications use:")
+
+citEntry(
+  entry        = "Article",
+  title        = "A novel feature-based approach to characterize algorithm performance for the traveling salesperson problem",
+  author       = personList(
+                   as.person("Olaf Mersmann"),
+                   as.person("Bernd Bischl"),
+                   as.person("Heike Trautmann"),
+                   as.person("Markus Wagner"),
+                   as.person("Jakob Bossek"),
+                   as.person("Frank Neumann")
+                  ),
+  journal      = "Annals of Mathematics and Artificial Intelligence",
+  year         = "2013",
+  volume       = "March",
+  pages        = "1--32",
+  publisher    = "Springer Netherlands",
+  url          = "http://dx.doi.org/10.1007/s10472-013-9341-2",
+
+  textVersion  =
+  paste("Olaf Mersmann, Bernd Bischl, Heike Trautmann, Markus Wagner, Jakob Bossek, Frank Neumann (2013).",
+        "A novel feature-based approach to characterize algorithm performance for the traveling salesperson problem.",
+        "Annals of Mathematics and Artificial Intelligence, March, 1-32.")
+)

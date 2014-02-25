@@ -1,0 +1,20 @@
+\name{feature_bounding_box}
+\alias{feature_bounding_box}
+\title{Bounding box features.}
+\usage{
+feature_bounding_box(x, distance_fraction = 0.1)
+}
+\arguments{
+  \item{x}{[\code{\link{tsp_instance}}]\cr TSP instance.}
+
+  \item{distance_fraction}{[\code{numeric(1)}]\cr Distance
+  ratio to bounding box.}
+}
+\value{
+[\code{list}].
+}
+\description{
+Determines the ratio of cities which lie within a certain
+distance to the bounding box.
+}
+
