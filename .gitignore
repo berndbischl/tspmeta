@@ -3,6 +3,7 @@ tspmeta_*.tar.gz
 .Rproj.user
 *.Rproj
 .Rhistory
+test_src.R
 src/*.so
 src/*.o
 
