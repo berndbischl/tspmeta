@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: TSP generating EA.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for tsp_generation_ea {tspmeta}"><tr><td>tsp_generation_ea {tspmeta}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>TSP generating EA.</h2>
+
+<h3>Description</h3>
+
+<p>TSP generating EA.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+tsp_generation_ea(fitness_function, pop_size = 30L, inst_size = 50L,
+  generations = 100L, time_limit = 30L, uniform_mutation_rate,
+  normal_mutation_rate, normal_mutation_sd, cells_round = 100L, rnd = TRUE,
+  ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>fitness_function</code></td>
+<td>
+<p>[<code>function(x, ...)</code>]<br>
+Fitness function used to judge the fitness of a TSP
+instance.  <code>x</code> is a numeric matrix with 2 columns,
+containing the coordinates of a TSP instance.</p>
+</td></tr>
+<tr valign="top"><td><code>pop_size</code></td>
+<td>
+<p>[<code>integer(1)</code>]<br> Number of TSP
+instances maintained in each population.  Default is 30.</p>
+</td></tr>
+<tr valign="top"><td><code>inst_size</code></td>
+<td>
+<p>[<code>integer(1)</code>]<br> Number of cities
+of each TSP instance.  Default is 50.</p>
+</td></tr>
+<tr valign="top"><td><code>generations</code></td>
+<td>
+<p>[<code>integer(1)</code>]<br> Number of
+generations.  Default is 100L.</p>
+</td></tr>
+<tr valign="top"><td><code>time_limit</code></td>
+<td>
+<p>[<code>integer(1)</code>]<br> Time limit in
+seconds.  Default is 30.</p>
+</td></tr>
+<tr valign="top"><td><code>uniform_mutation_rate</code></td>
+<td>
+<p>[<code>numeric(1)</code>]<br>
+Mutation probability in uniform mutation (in [0,1]).</p>
+</td></tr>
+<tr valign="top"><td><code>normal_mutation_rate</code></td>
+<td>
+<p>[<code>numeric(1)</code>]<br>
+Mutation probability in normal mutation (in [0,1])</p>
+</td></tr>
+<tr valign="top"><td><code>normal_mutation_sd</code></td>
+<td>
+<p>[<code>numeric(1)</code>]<br> Standard
+deviation of normal noise in normal mutation</p>
+</td></tr>
+<tr valign="top"><td><code>cells_round</code></td>
+<td>
+<p>[<code>numeric(1)</code>]<br> Grid resolution
+for rounding Default is 100.</p>
+</td></tr>
+<tr valign="top"><td><code>rnd</code></td>
+<td>
+<p>[<code>logical(1)</code>]<br> Round the coordinates
+before normal mutation.  Default is <code>TRUE</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>[any]<br> Not used.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>[<code>list</code>] List containing best individual form the last
+population, its fitness value, the genrational fitness and
+the last population.  Default is 50.
+</p>
+
+<hr><div align="center">[Package <em>tspmeta</em> version 1.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

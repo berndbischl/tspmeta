@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Greedy point matching</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for greedy_point_matching {tspmeta}"><tr><td>greedy_point_matching {tspmeta}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Greedy point matching</h2>
+
+<h3>Description</h3>
+
+<p>Pairs of cities are matched in a greedy fashion for
+morphing, first the closest pair w.r.t. euclidean distance,
+then the clostest pair of the remaining cities, and so on.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+greedy_point_matching(x, y)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>[<code>tsp_instance</code>]<br> First TSP instance</p>
+</td></tr>
+<tr valign="top"><td><code>y</code></td>
+<td>
+<p>[<code>tsp_instance</code>]<br> Second TSP instance</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>[<code>matrix</code>] Numeric matrix of point indices with
+shortest distance.
+</p>
+
+<hr><div align="center">[Package <em>tspmeta</em> version 1.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Calculates list of all TSP features for an instance.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/github.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script src="http://yandex.st/highlightjs/7.3/languages/r.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head><body>
+
+<table width="100%" summary="page for features {tspmeta}"><tr><td>features {tspmeta}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Calculates list of all TSP features for an instance.</h2>
+
+<h3>Description</h3>
+
+<p>Calculates list of all TSP features for an instance.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+features(x, rescale = TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>[<code><a href="tsp_instance.html">tsp_instance</a></code>]<br> TSP instance</p>
+</td></tr>
+<tr valign="top"><td><code>rescale</code></td>
+<td>
+<p>[<code>logical(1)</code>]<br> Rescale <code>x</code> to
+<i>[0,1]^2</i> before calculation of features?  Default is
+<code>TRUE</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>[<code>list</code>].
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="feature_angle.html">feature_angle</a></code>,
+<code><a href="feature_centroid.html">feature_centroid</a></code>,
+<code><a href="feature_cluster.html">feature_cluster</a></code>,
+<code><a href="feature_bounding_box.html">feature_bounding_box</a></code>,
+<code><a href="feature_chull.html">feature_chull</a></code>,
+<code><a href="feature_distance.html">feature_distance</a></code>,
+<code><a href="feature_modes.html">feature_modes</a></code>, <code><a href="feature_mst.html">feature_mst</a></code>,
+<code><a href="feature_nnds.html">feature_nnds</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="r">
+x = random_instance(10)
+print(features(x))
+</code></pre>
+
+<pre><code>## $angle_min
+## [1] 0.7997
+## 
+## $angle_median
+## [1] 1.16
+## 
+## $angle_mean
+## [1] 1.469
+## 
+## $angle_max
+## [1] 3.066
+## 
+## $angle_sd
+## [1] 0.7526
+## 
+## $angle_span
+## [1] 2.266
+## 
+## $angle_coef_of_var
+## [1] 0.5123
+## 
+## $centroid_centroid_x
+## [1] 0.5176
+## 
+## $centroid_centroid_y
+## [1] 0.3316
+## 
+## $centroid_dist_min
+## [1] 0.2126
+## 
+## $centroid_dist_median
+## [1] 0.4481
+## 
+## $centroid_dist_mean
+## [1] 0.4762
+## 
+## $centroid_dist_max
+## [1] 0.7616
+## 
+## $centroid_dist_sd
+## [1] 0.1585
+## 
+## $centroid_dist_span
+## [1] 0.549
+## 
+## $centroid_dist_coef_of_var
+## [1] 0.3328
+## 
+## $cluster_01pct_number_of_clusters
+## [1] 0
+## 
+## $cluster_01pct_mean_distance_to_centroid
+## [1] NA
+## 
+## $cluster_05pct_number_of_clusters
+## [1] 0
+## 
+## $cluster_05pct_mean_distance_to_centroid
+## [1] NA
+## 
+## $cluster_10pct_number_of_clusters
+## [1] 0
+## 
+## $cluster_10pct_mean_distance_to_centroid
+## [1] NA
+## 
+## $bounding_box_10_ratio_of_cities_outside_box
+## [1] 0.7
+## 
+## $bounding_box_20_ratio_of_cities_outside_box
+## [1] 1
+## 
+## $bounding_box_30_ratio_of_cities_outside_box
+## [1] 1
+## 
+## $chull_area
+## [1] 0.6985
+## 
+## $chull_points_on_hull
+## [1] 0.7
+## 
+## $distance_distances_shorter_mean_distance
+## [1] 0.52
+## 
+## $distance_distinct_distances
+## [1] 1
+## 
+## $distance_mode_frequency
+## [1] 10
+## 
+## $distance_mode_quantity
+## [1] 0.01
+## 
+## $distance_mode_mean
+## [1] 0
+## 
+## $distance_mean_tour_length
+## [1] 13.5
+## 
+## $distance_sum_of_lowest_edge_values
+## [1] 2.409
+## 
+## $distance_min
+## [1] 0
+## 
+## $distance_median
+## [1] 0.5953
+## 
+## $distance_mean
+## [1] 0.6076
+## 
+## $distance_max
+## [1] 1.318
+## 
+## $distance_sd
+## [1] 0.3616
+## 
+## $distance_span
+## [1] 1.318
+## 
+## $distance_coef_of_var
+## [1] 0.5951
+## 
+## $modes_number
+## [1] 2
+## 
+## $mst_depth_min
+## [1] 1
+## 
+## $mst_depth_median
+## [1] 2
+## 
+## $mst_depth_mean
+## [1] 2.2
+## 
+## $mst_depth_max
+## [1] 4
+## 
+## $mst_depth_sd
+## [1] 1.229
+## 
+## $mst_depth_span
+## [1] 3
+## 
+## $mst_depth_coef_of_var
+## [1] 0.5588
+## 
+## $mst_dists_min
+## [1] 0.07228
+## 
+## $mst_dists_median
+## [1] 0.2179
+## 
+## $mst_dists_mean
+## [1] 0.3023
+## 
+## $mst_dists_max
+## [1] 0.5171
+## 
+## $mst_dists_sd
+## [1] 0.1641
+## 
+## $mst_dists_span
+## [1] 0.4448
+## 
+## $mst_dists_coef_of_var
+## [1] 0.5429
+## 
+## $mst_dists_sum
+## [1] 0.04477
+## 
+## $nnds_min
+## [1] 0
+## 
+## $nnds_median
+## [1] 0.1434
+## 
+## $nnds_mean
+## [1] 0.2917
+## 
+## $nnds_max
+## [1] 0.921
+## 
+## $nnds_sd
+## [1] 0.2965
+## 
+## $nnds_span
+## [1] 0.921
+## 
+## $nnds_coef_of_var
+## [1] 1.016
+</code></pre>
+
+<pre><code class="r">
+</code></pre>
+
+
+<hr><div align="center">[Package <em>tspmeta</em> version 1.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Instance feature calculation and evolutionary instance
+generation for the traveling salesman problem.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+<h1> Instance feature calculation and evolutionary instance
+generation for the traveling salesman problem.
+<img class="toplogo" src="http://stat.ethz.ch/R-manual/R-devel/doc/html/logo.jpg" alt="[R logo]">
+</h1>
+<hr>
+<div align="center">
+<a href="http://stat.ethz.ch/R-manual/R-devel/doc/html/packages.html"><img src="http://stat.ethz.ch/R-manual/R-devel/doc/html/left.jpg" alt="[Up]" width="30" height="30" border="0"></a>
+<a href="http://stat.ethz.ch/R-manual/R-devel/doc/html/index.html"><img src="http://stat.ethz.ch/R-manual/R-devel/doc/html/up.jpg" alt="[Top]" width="30" height="30" border="0"></a>
+</div><h2>Documentation for package &lsquo;tspmeta&rsquo; version 1.1</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table width="100%">
+<tr><td width="25%"><a href="as_TSP.html">as_TSP</a></td>
+<td>Convert to TSP instance object of package TSP.</td></tr>
+<tr><td width="25%"><a href="autoplot.tsp_instance.html">autoplot.tsp_instance</a></td>
+<td>Plot TSP instance.</td></tr>
+<tr><td width="25%"><a href="center_of_mass.html">center_of_mass</a></td>
+<td>Return the center of all cities of a TSP instance.</td></tr>
+<tr><td width="25%"><a href="fast_two_opt.html">fast_two_opt</a></td>
+<td>Runs 2-Opt local search on TSP instance.</td></tr>
+<tr><td width="25%"><a href="features.html">features</a></td>
+<td>Calculates list of all TSP features for an instance.</td></tr>
+<tr><td width="25%"><a href="feature_angle.html">feature_angle</a></td>
+<td>Angle features.</td></tr>
+<tr><td width="25%"><a href="feature_bounding_box.html">feature_bounding_box</a></td>
+<td>Bounding box features.</td></tr>
+<tr><td width="25%"><a href="feature_centroid.html">feature_centroid</a></td>
+<td>Centroid features.</td></tr>
+<tr><td width="25%"><a href="feature_chull.html">feature_chull</a></td>
+<td>Convex hull features.</td></tr>
+<tr><td width="25%"><a href="feature_cluster.html">feature_cluster</a></td>
+<td>Cluster features.</td></tr>
+<tr><td width="25%"><a href="feature_distance.html">feature_distance</a></td>
+<td>Distance features.</td></tr>
+<tr><td width="25%"><a href="feature_modes.html">feature_modes</a></td>
+<td>Modes of edge cost distribution feature.</td></tr>
+<tr><td width="25%"><a href="feature_mst.html">feature_mst</a></td>
+<td>MST features.</td></tr>
+<tr><td width="25%"><a href="feature_nnds.html">feature_nnds</a></td>
+<td>Nearest neighbor features.</td></tr>
+<tr><td width="25%"><a href="get_solvers.html">get_solvers</a></td>
+<td>Returns integrated solver names.</td></tr>
+<tr><td width="25%"><a href="greedy_point_matching.html">greedy_point_matching</a></td>
+<td>Greedy point matching</td></tr>
+<tr><td width="25%"><a href="instance_dim.html">instance_dim</a></td>
+<td>Get instance dimensionality (space where coords live).</td></tr>
+<tr><td width="25%"><a href="morph_instances.html">morph_instances</a></td>
+<td>Morphing (convex-combination) of two instances with parameter alpha.</td></tr>
+<tr><td width="25%"><a href="normalization_angle.html">normalization_angle</a></td>
+<td>Calculate rotation angle such that the main axis through the cities is aligned with the X axis.</td></tr>
+<tr><td width="25%"><a href="normalize_rotation.html">normalize_rotation</a></td>
+<td>Normalize an instance w.r.t. its rotation.</td></tr>
+<tr><td width="25%"><a href="number_of_cities.html">number_of_cities</a></td>
+<td>Get number of cities in tsp instance.</td></tr>
+<tr><td width="25%"><a href="numvec_feature_statistics.html">numvec_feature_statistics</a></td>
+<td>Computes statistics from a vector of of values.</td></tr>
+<tr><td width="25%"><a href="print.tsp_instance.html">print.tsp_instance</a></td>
+<td>Print TSP instance</td></tr>
+<tr><td width="25%"><a href="random_instance.html">random_instance</a></td>
+<td>Generates a random TSP instance by scattering random points in a hypercube.</td></tr>
+<tr><td width="25%"><a href="read_tsplib_instance.html">read_tsplib_instance</a></td>
+<td>Read in a TSPLIB style Traveling Salesman Problem from a file.</td></tr>
+<tr><td width="25%"><a href="read_tsplib_instances.html">read_tsplib_instances</a></td>
+<td>Read in multiple TSPLIB style Traveling Salesman Problems from a directory.</td></tr>
+<tr><td width="25%"><a href="read_tsplib_tour.html">read_tsplib_tour</a></td>
+<td>Read in a TSPLIB style Traveling Salesman Problem tour from a file</td></tr>
+<tr><td width="25%"><a href="remove_zero_distances.html">remove_zero_distances</a></td>
+<td>Remove any duplicate cities in a tsp instance.</td></tr>
+<tr><td width="25%"><a href="rescale_instance.html">rescale_coords</a></td>
+<td>Rescale coords of TSP instance to [0,1]^2.</td></tr>
+<tr><td width="25%"><a href="rescale_instance.html">rescale_instance</a></td>
+<td>Rescale coords of TSP instance to [0,1]^2.</td></tr>
+<tr><td width="25%"><a href="rotate_coordinates.html">rotate_coordinates</a></td>
+<td>Rotate a matrix of 2D coordinates</td></tr>
+<tr><td width="25%"><a href="rotate_instance.html">rotate_instance</a></td>
+<td>Rotate the cities of a TSP instance around a point.</td></tr>
+<tr><td width="25%"><a href="run_solver.html">run_solver</a></td>
+<td>Runs a solver on a TSP instance.</td></tr>
+<tr><td width="25%"><a href="tsp_generation_ea.html">tsp_generation_ea</a></td>
+<td>TSP generating EA.</td></tr>
+<tr><td width="25%"><a href="tsp_instance.html">tsp_instance</a></td>
+<td>Generates a TSP instance S3 object either from city coordinates.</td></tr>
+</table>
+</body></html>
