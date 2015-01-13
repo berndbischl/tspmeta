@@ -14,9 +14,10 @@
 tsp_instance = function(coords, dists) {
 	checkArg(coords, "matrix")
 	# FIXME: we need a better check in bbmisc!
-	if (!(is.numeric(coords) && nrow(coords) > 3 && ncol(coords) == 2))
+	if (!(is.numeric(coords) && nrow(coords) > 3 && ncol(coords) == 2)) {
 		stopf("'coords' must be a numeric matrix with at least 4 rows and is currently resctriced to coordinates in 2D! Class = %s, dim = %s",
 		  class(coords)[1], collapse(as.character(dim(coords))))
+  }
   if (missing(dists)) {
     dists = dist(coords)
   } else {
@@ -29,11 +30,11 @@ tsp_instance = function(coords, dists) {
 	if (any(dists2 == 0)) {
 		warning("Zero entry detected in TSP dist matrix!")
 	}
-	
+
 	structure(list(
 		coords = coords,
 		dists = dists
-	), 
+	),
   #FIXME: do we limit ourself to euclidean TSP?
   class = c("tsp_instance_euclidean_coords",
             "tsp_instance_symmetric",
@@ -59,7 +60,7 @@ instance_dim = function(x) {
 }
 
 #' Print TSP instance
-#' 
+#'
 #' @param x [\code{\link{tsp_instance}}]\cr
 #'   TSP instance.
 #' @param ... [any]\cr
@@ -71,28 +72,27 @@ print.tsp_instance = function(x, ...) {
 }
 
 #' Plot TSP instance.
-#' 
+#'
 #' @param object [\code{\link{tsp_instance}}]\cr
 #'   TSP instance.
 #' @param opt_tour [\code{\link[TSP]{TOUR}}]\cr
 #'   TOUR object from package TSP, containing order of cities, tour length and
 #'   method name that generated this solution.
 #' @param ... [any]\cr
-#'   Not used.  
+#'   Not used.
 #' @return [\code{\link[ggplot2]{ggplot}}].
 #' @export autoplot.tsp_instance
 #' @method autoplot tsp_instance
 autoplot.tsp_instance = function(object, opt_tour, ...) {
-  x <- object
   # draw cities
-  coords = data.frame(x$coords)
+  coords = data.frame(object$coords)
   names(coords) = c("x", "y")
-  pl = ggplot(data = coords, aes_string(x="x", y="y"))
+  pl = ggplot(data = coords, aes_string(x = "x", y = "y"))
   # draw optimal tour
   if (!missing(opt_tour)) {
     # extract order of cities
     opt_tour = as.numeric(opt_tour)
-    opt_tour = c(opt_tour, opt_tour[1]) 
+    opt_tour = c(opt_tour, opt_tour[1])
     opt_tour_coords = coords[opt_tour, ]
     pl = pl + geom_path(data = opt_tour_coords, colour = "tomato")
   }
@@ -105,7 +105,7 @@ autoplot.tsp_instance = function(object, opt_tour, ...) {
 
 # FIXME: as. with dot?
 #' Convert to TSP instance object of package TSP.
-#' 
+#'
 #' @param x [\code{\link{tsp_instance}}]\cr
 #'   TSP instance.
 #' @return [\code{\link[TSP]{TSP}}].

@@ -1,4 +1,4 @@
-#' Generates a random TSP instance by scattering random points in a hypercube. 
+#' Generates a random TSP instance by scattering random points in a hypercube.
 #'
 #' @param size [\code{integer(1)}]\cr
 #'   Number of cities.
@@ -14,6 +14,6 @@
 #' @return [\code{\link{tsp_instance}}].
 #' @export
 random_instance = function(size, d = 2, lower = 0, upper = 1) {
-  x = runif(size * d, min = lower, max = upper)
-	tsp_instance(coords = matrix(x, ncol = d))  
+    x = runif(size * d, min = lower, max = upper)
+	tsp_instance(coords = matrix(x, ncol = d))
 }

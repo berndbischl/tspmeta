@@ -24,19 +24,19 @@
 #' x = random_instance(10)
 #' tours = sapply(c("nn", "cheapest_insertion", "arbitrary_insertion"), function(solver) {
 #'   list(solver = run_solver(x, method = solver))
-#' }) 
+#' })
 #' \dontrun{
 #'   concorde_path(path = "/absolute/path/to/concorde/executable")
 #'   concorde_tour = run_solver(x, method = "concorde")
 #'   concorde_tour = run_solver(x, method = "linkern")
-#' } 
+#' }
 #'
 #' @export
 run_solver = function(x, method, ...) {
-  checkArg(x, cl = "tsp_instance")                        
-  checkArg(method, choices = get_solvers())                        
-  if (method %in% c("nearest_insertion", 
-                    "farthest_insertion", 
+  checkArg(x, cl = "tsp_instance")
+  checkArg(method, choices = get_solvers())
+  if (method %in% c("nearest_insertion",
+                    "farthest_insertion",
                     "cheapest_insertion",
                     "arbitrary_insertion",
                     "nn",
@@ -55,9 +55,9 @@ run_solver = function(x, method, ...) {
 #' @export
 get_solvers = function() {
   c(
-    "nearest_insertion", 
-    "farthest_insertion", 
-    "cheapest_insertion", 
+    "nearest_insertion",
+    "farthest_insertion",
+    "cheapest_insertion",
     "arbitrary_insertion",
     "nn",
     "repetitive_nn",
@@ -66,8 +66,6 @@ get_solvers = function() {
     "linkern"
   )
 }
-
-
 
 #' Runs 2-Opt local search on TSP instance.
 #'
@@ -81,10 +79,10 @@ get_solvers = function() {
 #' @useDynLib tspmeta do_fast_two_opt
 fast_two_opt = function(x, initial_tour) {
   dists = as.matrix(x$dists)
-    
+
   if (missing(initial_tour))
     initial_tour = sample(1:number_of_cities(x))
-    
+
   res = .Call(do_fast_two_opt, dists, initial_tour)
   TOUR(x = res[[1]], method = "2-opt", tsp = as_TSP(x))
 }

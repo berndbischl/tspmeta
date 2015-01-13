@@ -9,7 +9,7 @@
 #' @return [\code{list}].
 #' @export
 feature_chull = function(x) {
-	coords = x$coords
+  coords = x$coords
   hull = chull(coords[, 1], coords[, 2])
   area = areapl(coords[hull, ])
   list(chull_area = area,

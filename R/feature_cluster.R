@@ -33,13 +33,15 @@ feature_cluster = function(x, epsilon) {
 			})
 		})
 		distances = unlist(distances)
-		res = list(number_of_clusters = length(unique(cm)),
-							 mean_distance_to_centroid = mean(distances) 
-							 )
+		res = list(
+			number_of_clusters = length(unique(cm)),
+			mean_distance_to_centroid = mean(distances)
+		)
 	} else {
-		res = list(number_of_clusters = 0,
-								mean_distance_to_centroid = NA
-							 )
+		res = list(
+			number_of_clusters = 0,
+			mean_distance_to_centroid = NA
+		)
 	}
 	prefix = sprintf("cluster_%02ipct", floor(epsilon * 100))
 	names(res) = paste(prefix, names(res), sep = "_")

@@ -24,5 +24,5 @@ feature_distance = function(x) {
        distance_mean_tour_length = 2 / (size - 1) * sum(dd),
        distance_sum_of_lowest_edge_values = sum(sort(as.dist(dd), partial = size)[1:size])
        )
-   c(res, numvec_feature_statistics(dd, "distance"))
+  c(res, numvec_feature_statistics(dd, "distance"))
 }

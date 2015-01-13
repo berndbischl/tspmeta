@@ -6,11 +6,11 @@
 ##'   Angle by which to rotate the coordinates. In radians.
 ##' @param center [\code{matrix}]\cr
 ##'   Center around which to rotate the coordinates.
-##' 
+##'
 ##' @return A matrix of rotated coordinates.
-rotate_coordinates <- function(coords, angle, center) {
-  R <- matrix(c(cos(angle), -sin(angle),
-                sin(angle), cos(angle)), ncol=2, byrow=TRUE)
+rotate_coordinates = function(coords, angle, center) {
+  R = matrix(c(cos(angle), -sin(angle),
+                sin(angle), cos(angle)), ncol = 2, byrow = TRUE)
   t((R %*% (t(coords) - center)) + center)
 }
 
@@ -25,16 +25,16 @@ rotate_coordinates <- function(coords, angle, center) {
 ##'   the center of mass of the cities.
 ##'
 ##' @return [\code{\link{tsp_instance}}] New TSP instance.
-##' 
+##'
 ##' @export
-rotate_instance <- function(instance, angle, center) {
+rotate_instance = function(instance, angle, center) {
   checkArg(instance, "tsp_instance")
-  checkArg(angle, "numeric", len=1L, na.ok=FALSE)
+  checkArg(angle, "numeric", len = 1L, na.ok = FALSE)
   if (missing(center)) {
-    center <- center_of_mass(instance)
+    center = center_of_mass(instance)
   }
-  checkArg(center, "numeric", len=2L, na.ok=FALSE)
-  instance$coords <- rotate_coordinates(instance$coords,
+  checkArg(center, "numeric", len = 2L, na.ok = FALSE)
+  instance$coords = rotate_coordinates(instance$coords,
                                         angle, center)
   instance
 }
@@ -48,35 +48,35 @@ rotate_instance <- function(instance, angle, center) {
 ##' @return [\code{numeric(1)}]
 ##'
 ##' @export
-normalization_angle <- function(instance) {
-  checkArg(instance, "tsp_instance")  
-  C <- cov(instance$coords)
-  main_axis <- eigen(C)$vectors[,1]
-  angle <- -atan2(main_axis[2], main_axis[1])
+normalization_angle = function(instance) {
+  checkArg(instance, "tsp_instance")
+  C = cov(instance$coords)
+  main_axis = eigen(C)$vectors[, 1]
+  angle = -atan2(main_axis[2], main_axis[1])
   angle
 }
 
 ##' Normalize an instance w.r.t. its rotation.
 ##'
 ##' Normalization is performed by aligning the main axis of the cities
-##' with the X axis. 
-##' 
+##' with the X axis.
+##'
 ##' @param instance [\code{tsp_instance}]\cr
 ##' @return A rotated \code{tsp_instance}.
 ##' @seealso \code{\link{normalization_angle}}
 ##' @export
-normalize_rotation <- function(instance) {
+normalize_rotation = function(instance) {
   ## Rotate by an additional 45deg so that the axis is aligned with
   ## the line with slope 1. This is mainly for cosmetic reasons when
   ## the instances are normalized to lie within the unit square.
-  angle <- normalization_angle(instance) + pi/4
-  cg <- center_of_mass(instance)
-  i1 <- rotate_instance(instance, angle, cg)
-  i2 <- rotate_instance(instance, angle + pi, cg)
+  angle = normalization_angle(instance) + pi / 4
+  cg = center_of_mass(instance)
+  i1 = rotate_instance(instance, angle, cg)
+  i2 = rotate_instance(instance, angle + pi, cg)
 
   ## Decide which instance is 'better' by counting the number of
   ## points to the right of the center of gravity.
-  if (sum(i1$coords[,1] > cg[1]) > sum(i2$coords[,1] > cg[1]))
+  if (sum(i1$coords[, 1] > cg[1]) > sum(i2$coords[, 1] > cg[1]))
     i1
   else
     i2

@@ -30,8 +30,8 @@ normal_mutation = function(coords, mut_op = 0.1, sigma = 0.0025) {
   cities_to_mutate = which(runif(nrow(coords)) < mut_op)
   ## pmin(pmax(...)) used to ensure we stay in bounds:
   if (length(cities_to_mutate) > 0) {
-    delta = matrix(rnorm(2*length(cities_to_mutate), sd = sigma), ncol = 2)
-    coords[cities_to_mutate,] = pmin(pmax(coords[cities_to_mutate,] + delta, 0), 1)
+    delta = matrix(rnorm(2 * length(cities_to_mutate), sd = sigma), ncol = 2)
+    coords[cities_to_mutate, ] = pmin(pmax(coords[cities_to_mutate, ] + delta, 0), 1)
   }
   coords
 }
@@ -54,7 +54,7 @@ create_mating_pool = function(pool_size, population, fitness) {
     # select two random instances from population
     idx = sample(1:n, 2)
     # put member with better fitness value into the mating pool
-    mating_pool[[i]] = if (fitness[idx[1]] >= fitness[idx[2]]) { 
+    mating_pool[[i]] = if (fitness[idx[1]] >= fitness[idx[2]]) {
       population[[idx[1]]]
     } else {
       population[[idx[2]]]
@@ -69,26 +69,34 @@ create_mating_pool = function(pool_size, population, fitness) {
 #   Number of cells desired (i.e. grid resolution).
 # @return [\code{matrix}]
 #   Numeric matrix of rounded city coordinates.
-round_grid <- function(coords, n = 100){
-   gr  <- seq(0,1,1/n)
-   rnd_grid_pt = apply(coords, 2, function(x){ sapply(x, function(y) { gr[which.min((y-gr)[(y-gr) >= 0])] })})  
-   
+round_grid = function(coords, n = 100){
+  gr = seq(0, 1, 1/n)
+  rnd_grid_pt = apply(coords, 2, function(x) {
+    sapply(x, function(y) {
+      gr[which.min((y - gr)[(y - gr) >= 0])]
+    })
+  })
+
    # avoid outliers outside boundary
-   helper <- function(x){
-       if(all(x!=1)) { y <- x + 1 / (2 * n) }
-       if(all(x==1)){ y <- x - 1 / (2 * n) }
-       if((x[2]==1) & (x[1] != 1)){ y = c(x[1] + 1 / (2 * n), x[2] - 1 / (2 * n)) }
-       if((x[1]==1) & (x[2] != 1)){ y = c(x[1] - 1 / (2 * n), x[2] + 1 / (2 * n)) }       
-       return(y)
-   }
-   t(apply(rnd_grid_pt, 1, helper))
+  helper = function(x){
+    if(all(x!=1)) { y = x + 1 / (2 * n) }
+    if(all(x==1)){ y = x - 1 / (2 * n) }
+    if((x[2]==1) & (x[1] != 1)) {
+      y = c(x[1] + 1 / (2 * n), x[2] - 1 / (2 * n))
+    }
+    if((x[1]==1) & (x[2] != 1)) {
+      y = c(x[1] - 1 / (2 * n), x[2] + 1 / (2 * n))
+    }
+    return(y)
+  }
+  t(apply(rnd_grid_pt, 1, helper))
 }
 
 
 
 #' TSP generating EA.
 #'
-#' @param fitness_function [\code{function(x, ...)}]\cr 
+#' @param fitness_function [\code{function(x, ...)}]\cr
 #'   Fitness function used to judge the fitness of a TSP instance.
 #'   \code{x} is a numeric matrix with 2 columns, containing
 #'   the coordinates of a TSP instance.
@@ -109,7 +117,7 @@ round_grid <- function(coords, n = 100){
 #' @param normal_mutation_rate [\code{numeric(1)}]\cr
 #'   Mutation probability in normal mutation (in [0,1])
 #' @param normal_mutation_sd [\code{numeric(1)}]\cr
-#'   Standard deviation of normal noise in normal mutation 
+#'   Standard deviation of normal noise in normal mutation
 #' @param cells_round [\code{numeric(1)}]\cr
 #'   Grid resolution for rounding
 #'   Default is 100.
@@ -120,14 +128,14 @@ round_grid <- function(coords, n = 100){
 #'   Not used.
 #' @return [\code{list}]
 #'   List containing best individual form the last population, its
-#'   fitness value, the genrational fitness and the last population. 
+#'   fitness value, the genrational fitness and the last population.
 #'   Default is 50.
 #' @export
-tsp_generation_ea = function(fitness_function, pop_size = 30L, inst_size = 50L, 
-  generations = 100L, time_limit = 30L, uniform_mutation_rate, 
+tsp_generation_ea = function(fitness_function, pop_size = 30L, inst_size = 50L,
+  generations = 100L, time_limit = 30L, uniform_mutation_rate,
   normal_mutation_rate, normal_mutation_sd, cells_round = 100L,
   rnd = TRUE, ...) {
-  
+
   checkArg(fitness_function, "function", formals = "x")
   pop_size = convertInteger(pop_size)
   checkArg(pop_size, "integer", len = 1L, na.ok = FALSE)
@@ -143,15 +151,15 @@ tsp_generation_ea = function(fitness_function, pop_size = 30L, inst_size = 50L,
   cells_round = convertInteger(cells_round)
   checkArg(cells_round, "integer", len = 1L, na.ok = FALSE)
   checkArg(rnd, "logical", len = 1L, na.ok = FALSE)
-  
+
   # size of mating pool is half of the population size
   pool_size = round(pop_size / 2)
-  
+
   ## define overall best problem instance according to fitness value
   overall_best = NULL
   overall_best_fitness = Inf
-  
-  ## build initial population randomly by selecting 2*instSize randoms
+
+  ## build initial population randomly by selecting 2 * instSize randoms
   ## (i.e. instSize coordinates) from a R[0,1] distribution
   coords = matrix(runif(pop_size * 2 * inst_size), ncol = 2)
   population = list()
@@ -160,14 +168,14 @@ tsp_generation_ea = function(fitness_function, pop_size = 30L, inst_size = 50L,
     population[[i]]  = round_grid(population_scale, cells_round)
     if (rnd) {
         population[[i]] = normal_mutation(population[[i]], normal_mutation_rate, normal_mutation_sd)
-    }        
+    }
   }
 
   start_time = proc.time()[[3]]
   # do the evolutian baby!
   generational_fitness = numeric(generations)
   for (g in 1:generations) {
-    
+
     # compute fitness value for all instances in current population
     fitness = sapply(population, fitness_function)
     current_time = proc.time()[[3]]
@@ -191,23 +199,23 @@ tsp_generation_ea = function(fitness_function, pop_size = 30L, inst_size = 50L,
     # Inspired by the LION 2010 paper we use 1-elitism, i.e. the
     # "best" instance of current population survives with probability 1.
     next_population = vector(length(population), mode = "list")
-    next_population[[1]] = current_best    
+    next_population[[1]] = current_best
     # 2-tournament selection
     for (k in 2:pop_size) {
       # choose two parents randomly from mating pool
       idx = sample(1:pool_size, 2)
       parent1 = mating_pool[[idx[1]]]
       parent2 = mating_pool[[idx[2]]]
-      
+
       # build offspring
       offspring = matrix(NA, ncol = 2, nrow = inst_size)
       idx = runif(inst_size) < 0.5
       offspring[idx, ]  = parent1[idx, ]
       offspring[!idx, ] = parent2[!idx, ]
-      
+
       # mutate
       offspring = uniform_mutation(offspring, uniform_mutation_rate)
-      
+
       if(rnd) {
         offspring = rescale_coords(offspring)
         offspring = round_grid(offspring, cells_round)
@@ -222,6 +230,6 @@ tsp_generation_ea = function(fitness_function, pop_size = 30L, inst_size = 50L,
     ## replace population
     population = next_population
   }
-  list(par = current_best, value = current_best_fitness,  
+  list(par = current_best, value = current_best_fitness,
     fitness = generational_fitness, last_population = population)
 }
