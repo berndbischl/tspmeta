@@ -9,7 +9,7 @@ if (interactive()) {
   library(TSP)
   load_all(".")
 } else {
-  library(tspmeta)  
+  library(tspmeta)
 }
-test_dir("inst/tests")
+test_dir("tests/testthat")
 
