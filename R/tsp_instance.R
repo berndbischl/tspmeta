@@ -12,7 +12,7 @@
 #' @return [\code{\link{tsp_instance}}].
 #' @export
 tsp_instance = function(coords, dists) {
-	checkArg(coords, "matrix")
+	assertMatrix(coords, mode = "numeric")
 	# FIXME: we need a better check in bbmisc!
 	if (!(is.numeric(coords) && nrow(coords) > 3 && ncol(coords) == 2)) {
 		stopf("'coords' must be a numeric matrix with at least 4 rows and is currently resctriced to coordinates in 2D! Class = %s, dim = %s",

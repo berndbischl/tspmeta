@@ -18,6 +18,7 @@ Depends:
     MASS
 Imports:
     BBmisc,
+    checkmate (>= 1.5),
     fpc,
     vegan,
     stringr,

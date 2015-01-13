@@ -9,7 +9,7 @@
 #'   Numeric matrix of scaled city coordinates.
 #' @export
 rescale_instance = function(x) {
-    checkArg(x, "tsp_instance")
+    assertClass(x, "tsp_instance")
     x$coords = rescale_coords(x$coords)
     x$dists = as.matrix(dist(x$coords))
     return(x)

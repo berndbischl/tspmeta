@@ -10,7 +10,7 @@ rotate_instance(instance, angle, center)
 \item{instance}{[\code{\link{tsp_instance}}]\cr
 TSP instance.}
 
-\item{angle}{[\code{numeric}]\cr
+\item{angle}{[\code{numeric(1)}]\cr
 Angle by which to rotate the coordinates. In radians.}
 
 \item{center}{[\code{numeric}]\cr

@@ -59,6 +59,6 @@ angle_between_points = function(a, b, c) {
 #'
 #' @export
 center_of_mass = function(instance) {
-	checkArg(instance, "tsp_instance")
+	assertClass(instance, "tsp_instance")
 	colMeans(instance$coords)
 }

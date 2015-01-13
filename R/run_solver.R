@@ -33,8 +33,8 @@
 #'
 #' @export
 run_solver = function(x, method, ...) {
-  checkArg(x, cl = "tsp_instance")
-  checkArg(method, choices = get_solvers())
+  assertClass(x, "tsp_instance")
+  assertChoice(method, choices = get_solvers())
   if (method %in% c("nearest_insertion",
                     "farthest_insertion",
                     "cheapest_insertion",

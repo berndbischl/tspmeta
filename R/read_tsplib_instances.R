@@ -17,22 +17,22 @@
 #'
 #' @return A \code{list} List of \code{tsp_instance} objects.
 #' @export
-read_tsplib_instances = function(path, pattern="*.tsp", 
+read_tsplib_instances = function(path, pattern = "*.tsp",
   max_size = 1000, use_names = TRUE, on_no_coords = "stop") {
-	
-  checkArg(path, "character", len = 1L, na.ok = FALSE)
-  checkArg(pattern, "character", len = 1L, na.ok = FALSE)
+
+  assertCharacter(path, len = 1L, any.missing = FALSE)
+  assertCharacter(pattern, len = 1L, any.missing = FALSE)
   max_size = convertInteger(max_size)
-  checkArg(max_size, "integer", len = 1L, na.ok = FALSE)
-  checkArg(use_names, "logical", len = 1L, na.ok = FALSE)
-  checkArg(on_no_coords, choices=c("stop", "warn"))
-		
+  assertInteger(max_size, len = 1L, any.missing = FALSE)
+  assertFlag(use_names, na.ok = FALSE)
+  assertChoice(on_no_coords, choices = c("stop", "warn"))
+
   file_names = list.files(path, pattern = pattern, full.names = TRUE)
   instances = list()
   errs = data.frame(character(0), character(0), character(0))
   for (file_name in file_names) {
     bn = basename(file_name)
-    ## FIXME errorhandling if this goes wrong!
+    #FIXME: errorhandling if this goes wrong!
     k = as.integer(str_extract(bn, "\\d+"))
     if (k <= max_size) {
       x = try(read_tsplib_instance(file_name))
@@ -41,12 +41,15 @@ read_tsplib_instances = function(path, pattern="*.tsp",
         warningf("Instance could not be parsed correctly: %s", bn)
       }	else {
         instances[[length(instances) + 1]] = x
+        #FIXME: should be indexed with length(instances) + 1?
         if (use_names)
           names(instances)[length(instances)] = bn
       }
     }
   }
-  
-  list(instances = instances, 
-       errors = setColNames(errs, c("filename", "path", "msg")))	
+
+  list(
+    instances = instances,
+    errors = setColNames(errs, c("filename", "path", "msg"))
+  )
 }

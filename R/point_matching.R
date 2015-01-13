@@ -12,8 +12,8 @@
 #'   Numeric matrix of point indices with shortest distance.
 #' @export
 greedy_point_matching = function(x, y) {
-  checkArg(x, "tsp_instance")
-  checkArg(y, "tsp_instance")
+  assertClass(x, "tsp_instance")
+  assertClass(y, "tsp_instance")
   x = x$coords
   y = y$coords
   # all distances to y_i's from each point in x
@@ -52,12 +52,15 @@ greedy_point_matching = function(x, y) {
 #   Second TSP instance.
 # @param ntries [\code{integer(1)}] \cr
 #   Number of random matchings to try. The best one is returned.
+#   Default is 100.
 # @return [\code{matrix}]
 #   A matrix with 2 columns that specifies the best of the
 #   \code{ntries} matching that was found.
-random_point_matching = function(x, y, ntries=100) {
-  checkArg(x, "tsp_instance")
-  checkArg(y, "tsp_instance")
+random_point_matching = function(x, y, ntries = 100) {
+  assertClass(x, "tsp_instance")
+  assertClass(y, "tsp_instance")
+  assertCount(x, positive = TRUE, na.ok = FALSE)
+
   best_matching = NULL
   best_matching_error = Inf
   n = nrow(x$coords)

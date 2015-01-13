@@ -1,4 +1,5 @@
 #' @import BBmisc
+#' @import checkmate
 #' @import stringr
 #' @import TSP
 #' @import MASS

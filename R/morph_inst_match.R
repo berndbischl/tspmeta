@@ -35,9 +35,12 @@ convex_combination = function(x_coords, y_coords, alpha) {
 #' autoplot(y)
 #' autoplot(z)
 morph_instances = function(x, y, alpha) {
+    assertClass(x, "tsp_instance")
+    assertClass(y, "tsp_instance")
+    assertNumber(alpha, lower = 0, upper = 1, na.ok = FALSE)
 
-  points_m = greedy_point_matching(x, y)
-  coords = convex_combination(x$coords, y$coords[points_m[, 2]], alpha)
+    points_m = greedy_point_matching(x, y)
+    coords = convex_combination(x$coords, y$coords[points_m[, 2]], alpha)
 
-  tsp_instance(coords = coords)
+    tsp_instance(coords = coords)
 }

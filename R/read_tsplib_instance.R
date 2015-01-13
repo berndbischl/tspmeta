@@ -4,13 +4,15 @@
 #' The current state of the parser does not understand all variants
 #' of the TSPLIB format. Much effort has been spent making the
 #' parser as robust as possible. It will stop as soon as it sees
-#' input it cannot handle. 
+#' input it cannot handle.
 #'
 #' @param path [\code{character(1)}]\cr
 #'   Character string containing path to file in TSPLIB format.
-#' @return [\code{\link{tsp_instance}}]. 
+#' @return [\code{\link{tsp_instance}}].
 #' @export
 read_tsplib_instance = function(path) {
+  assertFile(path, access = "r")
+
   con = file(path, open = "r")
   on.exit(close(con))
 
@@ -18,10 +20,10 @@ read_tsplib_instance = function(path) {
 
   # Read specification part
   tsp_instance = read_tsplib_specification(con, tsp_instance)
-  
+
   if (substr(tsp_instance$TYPE, 1, 3) != "TSP")
     stop("Currently the only supported TYPE is: TSP!")
-  
+
   # Read data part
   while (next_line_exists(con)) {
     line = next_line(con)
@@ -90,11 +92,11 @@ read_tsplib_specification = function(con, tsp_instance) {
   # <keyword> : <value>
   while (str_detect(line, ":")) {
     specification = unlist(strsplit(line, "[[:space:]]*:[[:space:]]*"))
-    tsp_instance[[specification[1]]] = specification[2]    
+    tsp_instance[[specification[1]]] = specification[2]
     line = next_line(con)
   }
   tsp_instance$DIMENSION = as.integer(tsp_instance$DIMENSION)
-  
+
   # Last line read does _not_ belong to tsp_instance, so push it
   # back onto the connection.
   pushBack(line, con)
@@ -111,8 +113,8 @@ read_tsplib_node_coords = function(con, tsp_instance) {
 
   if (tsp_instance$NODE_COORD_TYPE == "TWOD_COORDS") {
     if (is.null(tsp_instance$DIMENSION))
-      stop("Unknown dimension of TSP instance in function 'read_tsplib_node_coords'.")      
-    # read all the coordinates 
+      stop("Unknown dimension of TSP instance in function 'read_tsplib_node_coords'.")
+    # read all the coordinates
     node_coords = read.table(con, header = FALSE, nrows = tsp_instance$DIMENSION)
     ## remove first col, which just contains index numbers 1:n
     tsp_instance$NODE_COORDS = node_coords[,-1]
@@ -123,18 +125,18 @@ read_tsplib_node_coords = function(con, tsp_instance) {
   tsp_instance
 }
 
-read_tsplib_edge_weights = function(con, tsp_instance) {  
+read_tsplib_edge_weights = function(con, tsp_instance) {
   if (is.null(tsp_instance$EDGE_WEIGHT_TYPE))
     stop("EDGE_WEIGHT_TYPE not specified but EDGE_WEIGHT_SECTION present!")
 
-  dimension = tsp_instance$DIMENSION 
+  dimension = tsp_instance$DIMENSION
   if (tsp_instance$EDGE_WEIGHT_TYPE == "EXPLICIT") {
     if (tsp_instance$EDGE_WEIGHT_FORMAT == "LOWER_DIAG_ROW") {
       number_of_edge_weights = dimension * (dimension + 1) / 2
       edge_weights = scan(con, n = number_of_edge_weights, quiet = TRUE)
       # Delete diagonal
       edge_weights = edge_weights[-cumsum(1:dimension)]
-      
+
       # Build symmetric distance matrix
       m = matrix(0, nrow = dimension, ncol = dimension)
       m[upper.tri(m)] = edge_weights
@@ -166,7 +168,7 @@ read_tsplib_edge_weights = function(con, tsp_instance) {
       edge_weights = as.dist(matrix(edge_weights, dimension))
     } else {
       attr(edge_weights, "Size") = dimension
-      class(edge_weights) = "dist"    
+      class(edge_weights) = "dist"
     }
     tsp_instance$EDGE_WEIGHTS = edge_weights
   } else {
@@ -185,7 +187,7 @@ read_tsplib_display_data = function(con, tsp_instance) {
 
   if (tsp_instance$DISPLAY_DATA_TYPE == "TWOD_DISPLAY") {
     dimension = tsp_instance$DIMENSION
-    display_data = read.table(con, header=FALSE, nrows=tsp_instance$DIMENSION) 
+    display_data = read.table(con, header=FALSE, nrows=tsp_instance$DIMENSION)
     ## remove first col, which just contains index numbers 1:n
     tsp_instance$DISPLAY_DATA = display_data[, -1]
   }
@@ -269,7 +271,7 @@ node_coordinates = function(tsp_instance) {
     if (any(edge_weights == 0)) {
       ## Guess coordinates since we only have a distance matrix
       warning("Some nodes have distance 0.")
-      cmdscale(edge_weights, k = 2)      
+      cmdscale(edge_weights, k = 2)
     } else {
       projection = sammon(edge_weights, niter = 1000, tol = 1e-9, trace = FALSE)
       ##FIXME: The subsequent warning is converted into an error (gr17.tsp)
@@ -299,12 +301,12 @@ read_tsplib_tour = function(path) {
   file_ext = splitted[length(splitted)]
   con = file(path, open = "r")
   on.exit(close(con))
-  
+
   tsp_tour = list()
   # tour is given in tsplib format
   if(file_ext == "tour") {
     dimension = NULL
-  
+
     line = next_line(con)
     while (str_trim(peek_line(con)) != "TOUR_SECTION") {
         field = str_split(line, ":")[[1]]
@@ -319,13 +321,13 @@ read_tsplib_tour = function(path) {
 
     while (next_line_exists(con)) {
       line = next_line(con)
-    
+
       # what section is it?
       if (line == "TOUR_SECTION") {
         tsp_tour = read_tsplib_tour_section(con)
       }
     }
-    
+
   # tour is given in concorde format
   } else if(file_ext == "sol") {
     line = next_line(con)
@@ -336,7 +338,7 @@ read_tsplib_tour = function(path) {
       sub_tour = as.integer(unlist(strsplit(line, " ")[[1]]))
       tsp_tour = c(tsp_tour, sub_tour)
     }
-    # concorde returns nodes 0 to (n-1), but we need nodes between 1 and n 
+    # concorde returns nodes 0 to (n-1), but we need nodes between 1 and n
     tsp_tour = tsp_tour + 1
   } else {
     stop("BAM! Unknown tour file format.")
@@ -348,7 +350,7 @@ read_tsplib_tour = function(path) {
 #
 # @param con - open connection to file
 # @param dimension
-# 
+#
 # @return vector of nodes on the TSP tour.
 read_tsplib_tour_section = function(con) {
   nodes = numeric()

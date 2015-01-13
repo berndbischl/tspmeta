@@ -136,21 +136,21 @@ tsp_generation_ea = function(fitness_function, pop_size = 30L, inst_size = 50L,
   normal_mutation_rate, normal_mutation_sd, cells_round = 100L,
   rnd = TRUE, ...) {
 
-  checkArg(fitness_function, "function", formals = "x")
+  assertFunction(fitness_function, args = c("x"))
   pop_size = convertInteger(pop_size)
-  checkArg(pop_size, "integer", len = 1L, na.ok = FALSE)
+  assertInteger(pop_size, len = 1L, any.missing = FALSE, lower = 2L)
   inst_size = convertInteger(inst_size)
-  checkArg(inst_size, "integer", len = 1L, na.ok = FALSE)
+  assertInteger(inst_size, len = 1L, any.missing = FALSE, lower = 2L)
   generations = convertInteger(generations)
-  checkArg(generations, "integer", len = 1L, na.ok = FALSE)
+  assertInteger(generations, len = 1L, any.missing = FALSE, lower = 1L)
   time_limit = convertInteger(time_limit)
-  checkArg(time_limit, "integer", len = 1L, na.ok = FALSE)
-  checkArg(uniform_mutation_rate, "numeric", len = 1L, na.ok = FALSE)
-  checkArg(normal_mutation_rate, "numeric", len = 1L, na.ok = FALSE)
-  checkArg(normal_mutation_sd, "numeric", len = 1L, na.ok = FALSE)
+  assertInteger(time_limit, len = 1L, any.missing = FALSE, lower = 30)
+  assertNumber(uniform_mutation_rate, na.ok = FALSE)
+  assertNumber(normal_mutation_rate, na.ok = FALSE)
+  assertNumber(normal_mutation_sd, na.ok = FALSE)
   cells_round = convertInteger(cells_round)
-  checkArg(cells_round, "integer", len = 1L, na.ok = FALSE)
-  checkArg(rnd, "logical", len = 1L, na.ok = FALSE)
+  assertInteger(cells_round, len = 1L, any.missing = FALSE)
+  assertFlag(rnd, na.ok = FALSE)
 
   # size of mating pool is half of the population size
   pool_size = round(pop_size / 2)
