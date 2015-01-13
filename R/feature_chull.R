@@ -13,5 +13,5 @@ feature_chull = function(x) {
   hull = chull(coords[, 1], coords[, 2])
   area = areapl(coords[hull, ])
   list(chull_area = area,
-       chull_points_on_hull = length(hull) / nrow(coords))
+	   chull_points_on_hull = length(hull) / nrow(coords))
 }

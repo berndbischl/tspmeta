@@ -81,8 +81,7 @@ print.tsp_instance = function(x, ...) {
 #' @param ... [any]\cr
 #'   Not used.
 #' @return [\code{\link[ggplot2]{ggplot}}].
-#' @export autoplot.tsp_instance
-#' @method autoplot tsp_instance
+#' @export
 autoplot.tsp_instance = function(object, opt_tour, ...) {
   # draw cities
   coords = data.frame(object$coords)
