@@ -8,7 +8,7 @@
 #' @return [\code{list}].
 #' @export
 feature_nnds = function(x) {
-  d = x$coords
+  d = x$dists
   diag(d) = Inf
   numvec_feature_statistics(apply(d, 1, min), "nnds")
 }
