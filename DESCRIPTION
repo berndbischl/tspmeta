@@ -27,4 +27,4 @@ Suggests:
     testthat
 LazyData: yes
 ByteCompile: yes
-Version: 1.1
+Version: 1.2
