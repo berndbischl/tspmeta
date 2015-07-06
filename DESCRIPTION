@@ -1,6 +1,6 @@
 Package: tspmeta
 Title: Instance feature calculation and evolutionary instance generation for
-    the traveling salesman problem.
+    the traveling salesman problem
 Description: Instance feature calculation and evolutionary instance generation
     for the traveling salesman problem. Also contains code to "morph" two TSP
     instances into each other. And the possibility to conveniently run a couple
