@@ -1,3 +1,5 @@
+#' @import stats
+#' @import grDevices
 #' @import BBmisc
 #' @import checkmate
 #' @import stringr
