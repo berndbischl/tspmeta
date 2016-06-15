@@ -11,7 +11,7 @@
 #' @return [\code{\link{tsp_instance}}].
 #' @export
 read_tsplib_instance = function(path) {
-  assertFile(path, access = "r")
+  assertFileExists(path, access = "r")
 
   con = file(path, open = "r")
   on.exit(close(con))
